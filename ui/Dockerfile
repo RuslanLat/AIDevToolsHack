@@ -27,8 +27,7 @@ RUN useradd --create-home --shell /bin/bash --uid 1000 mcp && \
 # Переключаемся на непривилегированного пользователя
 USER mcp
 
-# Открываем порт для MCP сервера (см. server.py → 8000)
-EXPOSE 8000
+EXPOSE 8501
 
 # Устанавливаем переменные окружения для оптимальной работы Python
 ENV PYTHONPATH=/app \
@@ -38,4 +37,4 @@ ENV PYTHONPATH=/app \
     UV_SYSTEM_PYTHON=1
 
 # Команда запуска сервера - точно так же, как локально
-CMD ["uv", "run", "python", "main.py"]
+CMD ["uv", "run", "streamlit", "run", "main.py"]

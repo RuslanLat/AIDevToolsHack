@@ -1,0 +1,48 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  mcpserver:
+    build:
+      context: ./mcpserver
+      dockerfile: Dockerfile
+    container_name: mcpserver
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./mcpserver/.env
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  agent:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile
+    container_name: agent
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./agent/.env
+    depends_on:
+      - mcpserver
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    container_name: ui
+    ports:
+      - "8501:8501"
+    depends_on:
+      - agent
+    restart: unless-stopped
+    networks:
+      - mcp-net
+
+networks:
+  mcp-net:
+    driver: bridge

@@ -80,12 +80,12 @@ MCP_API_KEY=ваш_надёжный_секретный_ключ
 
 #### CLI-режим (stdio) — идеален для локальных LLM-инструментов
 ```bash
-fastmcp run src/main.py
+fastmcp run main.py
 ```
 
 #### HTTP/SSE-режим — для веб-клиентов или удалённого доступа
 ```bash
-uv run src/main.py
+uv run smain.py
 ```
 
 > Сервер автоматически определяет транспорт при запуске через `fastmcp run`
