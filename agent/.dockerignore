@@ -1,0 +1,17 @@
+# Ignore Git and IDE files
+.git/
+.vscode/
+.gitignore
+
+# Ignore log files and environment variables
+*.log
+.env
+.env.example
+
+# Ignore specific large files
+*.zip
+
+# Python-generated files
+__pycache__/
+
+.venv
